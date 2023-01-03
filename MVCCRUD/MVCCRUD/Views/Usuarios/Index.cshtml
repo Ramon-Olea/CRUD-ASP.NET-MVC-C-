@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MVCCRUD.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Listado de usuarios";
+}
+@section Estilos{
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn-info btn">Crear Usuario</a>
+</p>
+<table class="table display " id="example" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clave)
+            </th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn-primary btn" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details"  class="btn-warning btn" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" class="btn-danger btn" asp-route-id="@item.Id">Borrar</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+    $('#example').DataTable();
+});
+
+    </script>
+
+}
